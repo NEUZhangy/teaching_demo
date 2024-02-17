@@ -1,16 +1,21 @@
 package org.example;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 
 @RestController
 public class LoginController {
 
-    @CrossOrigin(origins = "*") // 允许所有源的CORS请求
+    private final Database db;
+
+    LoginController(Database _db) {
+        db = _db;
+    }
+
+    @CrossOrigin(origins = "*")
     @PostMapping("/login")
     public String login(@RequestBody User user) {
-        // 这里应该添加真实的用户验证逻辑
         if (checkUser01(user)) {
             return "{\"result\": \"Login successful\"}";
         } else {
@@ -19,23 +24,21 @@ public class LoginController {
     }
 
     public boolean checkUser01(User user) {
-        if ("admin".equals(user.getUsername()) && 123 == user.getPassword()) {
+//        if (user == null) {
+//            return false;
+//        }
+        if (user.getPassword() == db.getPassword(user.getUsername())) {
             return true;
         } else {
             return false;
         }
     }
     Boolean checkPassword02(String userName, int password) {
-        LoginInfor loginInfor = new LoginInfor();
-        ArrayList<User> loginUser = loginInfor.getLoginInfor();
-        for (User user : loginUser) {
-            if (userName.equals(user.getUsername()) && isValidPwd(password) && password == user.getPassword()) {
-                return true;
-            } else {
-                return false;
-            }
+        if (isValidPwd(password) && password == db.getPassword(userName)) {
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     // int range -2147483648 to 2147483647

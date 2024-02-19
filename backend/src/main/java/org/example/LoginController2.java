@@ -26,24 +26,21 @@ public class LoginController2 {
     }
 
     public boolean checkUser01(User2 user) {
-//        if (user == null) {
-//            return false;
-//        }
-        if (user.getPassword() == db.getPassword(user.getUsername()).toString()) {
+        if (user.getPassword().equals(db.getPassword(user.getUsername()).toString())) {
             return true;
         } else {
             return false;
         }
     }
     Boolean checkPassword02(String userName, String password) {
-        if (isValidPwd(password) && password == db.getPassword(userName).toString()) {
+        if (isValidPwd(password) && password.equals(db.getPassword(userName).toString())) {
             return true;
         } else {
             return false;
         }
     }
 
-    // int range -2147483648 to 2147483647
+    // int range > 3  to  < 7
     static Boolean isValidPwd(String password) {
         if (password.length() > 3 && password.length() < 7) {
             return true;

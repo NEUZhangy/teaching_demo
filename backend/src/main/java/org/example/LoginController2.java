@@ -18,22 +18,27 @@ public class LoginController2 {
     @CrossOrigin(origins = "*")
     @PostMapping("/loginString")
     public String login(@RequestBody User2 user) {
-        if (checkUser01(user)) {
+        if (checkUser02(user)) {
             return "{\"result\": \"Login successful\"}";
         } else {
                 return "{\"result\": \"Invalid username or password\"}";
         }
     }
 
-    public boolean checkUser01(User2 user) {
-        if (user.getPassword().equals(db.getPassword(user.getUsername()).toString())) {
-            return true;
-        } else {
+
+    public Boolean checkUser02(User2 user) {
+        //the username and password should not be null
+        if (user == null) {
             return false;
         }
-    }
-    Boolean checkPassword02(String userName, String password) {
-        if (isValidPwd(password) && password.equals(db.getPassword(userName).toString())) {
+        String userName = user.getUsername();
+        String password = user.getPassword();
+        if(userName == null || password == null) {
+            return false;
+        }
+
+        if (isValidPwd(password) && db.getPassword(userName) != null
+                && password.equals(db.getPassword(userName).toString())) {
             return true;
         } else {
             return false;
@@ -42,7 +47,15 @@ public class LoginController2 {
 
     // int range > 3  to  < 7
     static Boolean isValidPwd(String password) {
-        if (password.length() > 3 && password.length() < 7) {
+        if (password.length() >= 3 && password.length() < 7) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean checkUser01(User2 user) {
+        if (user.getPassword().equals(db.getPassword(user.getUsername()).toString())) {
             return true;
         } else {
             return false;

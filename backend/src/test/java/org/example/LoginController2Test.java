@@ -24,13 +24,20 @@ class LoginController2Test {
     @Test
     void checkPassword02() {
         LoginController2 controller = new LoginController2(db);
-        assertTrue(controller.checkPassword02("Ying", "123456"));
-        assertFalse(controller.checkPassword02("Ying", "1234678"));
+        assertTrue(controller.checkUser02(new User2("Ying", "123456")));
+        //pwd > 7 digits
+        assertFalse(controller.checkUser02(new User2("Ying", "1234678")));
+        // different null case tests
+        assertFalse(controller.checkUser02(new User2("Ying", null)));
+        assertFalse(controller.checkUser02(new User2(null, "23445")));
+        assertFalse(controller.checkUser02(new User2()));
+        assertFalse(controller.checkUser02(null));
     }
 
     @Test
     void isValidPwd() {
-        assertFalse(LoginController2.isValidPwd("123"));
+        assertFalse(LoginController2.isValidPwd("12"));
+        assertTrue(LoginController2.isValidPwd("123"));
         assertTrue(LoginController2.isValidPwd("123456"));
         assertFalse(LoginController2.isValidPwd("11111111"));
     }

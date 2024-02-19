@@ -18,6 +18,12 @@ class LoginControllerTest {
         LoginController controller = new LoginController(db);
         User user = new User("admin", 123);
         String result = controller.login(user);
+        User user1 = new User("Mike", 12345);
+        assertEquals("{\"result\": \"Invalid username or password\"}", controller.login(user1));
+
+        User user3 = new User( null, 12345);
+        assertEquals("{\"result\": \"Invalid username or password\"}", controller.login(user3));
+
         assertEquals("{\"result\": \"Login successful\"}", result);
     }
 

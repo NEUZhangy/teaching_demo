@@ -17,8 +17,8 @@ public class BottomUpIntegrationTest {
     @Test
     public void TestController() {
         // Test the controller
-        LoginController controller = new LoginController(db);
-        User user = new User("admin", 123);
+        LoginController2 controller = new LoginController2(db);
+        User2 user = new User2("admin", "123");
         String result = controller.login(user);
         assertEquals("{\"result\": \"Login successful\"}", result);
     }

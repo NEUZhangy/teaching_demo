@@ -24,9 +24,6 @@ public class LoginController {
     }
 
     public boolean checkUser01(User user) {
-//        if (user == null) {
-//            return false;
-//        }
         if (user.getPassword() == db.getPassword(user.getUsername())) {
             return true;
         } else {
@@ -34,6 +31,10 @@ public class LoginController {
         }
     }
     Boolean checkPassword02(String userName, int password) {
+        if (userName == null) {
+            return false;
+        }
+
         if (isValidPwd(password) && password == db.getPassword(userName)) {
             return true;
         } else {

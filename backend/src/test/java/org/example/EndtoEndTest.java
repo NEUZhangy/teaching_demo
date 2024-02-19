@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class EndtoEndTest {
@@ -21,8 +22,8 @@ public class EndtoEndTest {
 
     @Test
     public void testLoginSuccess() {
-        String url = "http://localhost:" + port + "/login";
-        User user = new User("admin", 123); // Assuming User is a valid class for the request body
+        String url = "http://localhost:" + port + "/loginString";
+        User2 user = new User2("admin", "123"); // Assuming User is a valid class for the request body
         ResponseEntity<String> response = restTemplate.postForEntity(url, user, String.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("{\"result\": \"Login successful\"}", response.getBody());
@@ -30,9 +31,10 @@ public class EndtoEndTest {
 
     @Test
     public void testLoginFailure() {
-        String url = "http://localhost:" + port + "/login";
-        User user = new User("user", 456); // Incorrect credentials
+        String url = "http://localhost:" + port + "/loginString";
+        User2 user = new User2("user", "456"); // Incorrect credentials
         ResponseEntity<String> response = restTemplate.postForEntity(url, user, String.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertTrue(response.getBody().contains("Invalid username or password"));
     }
 }

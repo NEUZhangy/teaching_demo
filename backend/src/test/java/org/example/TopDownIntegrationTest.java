@@ -23,8 +23,8 @@ public class TopDownIntegrationTest {
         public void TestControllerSuccess() {
             // Test the controller
             Mockito.when(mockDB.getPassword("admin")).thenReturn(123);
-            LoginController controller = new LoginController(mockDB);
-            User user = new User("admin", 123);
+            LoginController2 controller = new LoginController2(mockDB);
+            User2 user = new User2("admin", "123");
             String result = controller.login(user);
             assertEquals("{\"result\": \"Login successful\"}", result);
         }
@@ -33,8 +33,8 @@ public class TopDownIntegrationTest {
         public void TestControllerFailure() {
             // Test the controller
             Mockito.when(mockDB.getPassword("admin")).thenReturn(456);
-            LoginController controller = new LoginController(mockDB);
-            User user = new User("admin", 123);
+            LoginController2 controller = new LoginController2(mockDB);
+            User2 user = new User2("admin", "123");
             String result = controller.login(user);
             assertEquals("{\"result\": \"Invalid username or password\"}", result);
         }

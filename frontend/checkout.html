@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #f7f7f7;
+        }
+
+        .total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
+        }
+
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        input[type="text"], input[type="number"], button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="text"], input[type="number"] {
+            font-size: 1rem;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    <h2>Grocery Checkout</h2>
+    <!-- Input fields for adding a product -->
+    <div class="input-section">
+        <label for="product">Product:</label>
+        <input type="text" id="product" required>
+        <label for="Quantity">Quantity:</label>
+        <input type="number" id="Quantity" required>
+
+        <button id="addItemBtn">Add Item to Cart</button>
+    </div>
+
+    <h3>Your Cart</h3>
+    <table id="cartTable">
+        <thead>
+        <tr>
+            <th>Product</th>
+            <th>UnitPrice</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Cart items will be inserted here -->
+        </tbody>
+    </table>
+
+    <div class="total">
+        Total: $<span id="totalPrice">0</span>
+    </div>
+
+</div>
+
+
+<script src="checkout.js"></script>
+</body>
+</html>

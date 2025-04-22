@@ -34,6 +34,13 @@ class LoginController2Test {
         assertFalse(controller.checkUser02(null));
     }
 
+    void testa() {
+        // Test the database
+        Database db = new Database();
+        assertEquals(db.getPassword("admin"), "123");
+        assertNull(db.getPassword("aaaaa"));
+    }
+
     @Test
     void isValidPwd() {
         assertFalse(LoginController2.isValidPwd("12"));

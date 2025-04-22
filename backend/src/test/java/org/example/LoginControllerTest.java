@@ -13,6 +13,9 @@ class LoginControllerTest {
         assertFalse(LoginController.isValidPwd(11111111));
     }
 
+
+
+
     @Test
     void login() {
         LoginController controller = new LoginController(db);
@@ -37,7 +40,7 @@ class LoginControllerTest {
     @Test
     void checkPassword02() {
         LoginController controller = new LoginController(db);
-        assertTrue(controller.checkPassword02("Ying", 123456));
-        assertFalse(controller.checkPassword02("Ying", 1234));
+        assertTrue(controller.checkUserFix(new User("Ying", 123456)));
+        assertFalse(controller.checkUserFix(new User("Ying", 1234)));
     }
 }

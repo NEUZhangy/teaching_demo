@@ -19,7 +19,8 @@ public class LoginController {
         if (checkUser01(user)) {
             return "{\"result\": \"Login successful\"}";
         } else {
-                return "{\"result\": \"Invalid username or password\"}";
+
+            return "{\"result\": \"Invalid username or password\"}";
         }
     }
 
@@ -30,8 +31,12 @@ public class LoginController {
             return false;
         }
     }
-    Boolean checkPassword02(String userName, int password) {
-        if (userName == null) {
+
+    Boolean checkUserFix(User user) {
+        String userName = user.getUsername();
+        int password = user.getPassword();
+
+        if (userName.equals(null)) {
             return false;
         }
 
